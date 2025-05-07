@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Conecta Plus App</string>
+	<string>Conecta Plus</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -24,6 +24,17 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+    <string>O Conecta Plus deseja acessar sua câmera. O aplicativo grava as imagens para detectar o local onde você está.</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>O Conecta Plus deseja registrar sua localização. Em nossa plataforma você pode ver a localização com endereço dos lugares onde o ponto foi batido.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>O Conecta Plus deseja acessar o microfone. Você pode gravar sons e ouvir em nossa plataforma.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>O Conecta Plus deseja acessar sua galeria. Dessa forma você terá acesso as imagens gravadas na galeria.</string>
+    <key>NSUserTrackingUsageDescription</key>
+    <string>O Conecta Plus utiliza seus dados para criar sua folha de ponto virtual e identificar as lojas que foram visitadas por você. Seus dados poderão ser encontrados em nossa plataforma em forma de relatório.</string>
+    <key>UIApplicationSupportsIndirectInputEvents</key>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

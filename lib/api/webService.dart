@@ -21,11 +21,11 @@ class WebService {
   Future<List<Foto>> apiSaveFotos(List<Foto> listMidia,
       {bool validarInternet = true}) async {
     try {
-      Util.printDebug('apiSaveFotosV2');
-      TratarErro.gravarLog('webservice.dart - apiSaveFotosV2()', 'INFO');
+      Util.printDebug('apiSaveFotos');
+      TratarErro.gravarLog('webservice.dart - apiSaveFotos()', 'INFO');
 
       if (validarInternet == false || await Util.validarInternet()) {
-        final uri = Uri.parse('${Util.appUrlBaseWebservice}/api/saveFotosV2');
+        final uri = Uri.parse('${Util.appUrlBaseWebservice}/api/saveFotos');
 
         Map<String, String> requestHeaders = {
           'Content-Type': 'application/x-www-form-urlencoded',
@@ -343,7 +343,7 @@ class WebService {
   Future<List<Ponto>> apiSavePontos(List<Ponto> listPonto,
       {bool validarInternet = true}) async {
     try {
-      Util.printDebug('apiSavePontosV2');
+      Util.printDebug('apiSavePontos');
       TratarErro.gravarLog('webservice.dart - saveIntegraUsuariosPontos()', 'INFO');
 
       if (validarInternet == false || await Util.validarInternet()) {
