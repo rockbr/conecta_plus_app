@@ -10,6 +10,7 @@ const String fotosColArquivo = 'arquivo';
 const String fotosColEnviado = 'enviado';
 const String fotosColFinalizado = 'finalizado';
 const String fotosColFotoDeletada = 'foto_deletada';
+const String fotosColIdUsuarioConecta = 'id_usuario_conecta';
 
 //#endregion
 

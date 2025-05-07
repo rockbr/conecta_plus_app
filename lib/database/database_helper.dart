@@ -1,9 +1,12 @@
 import 'package:conecta_plus_app/database/database_upgrade.dart';
+import 'package:conecta_plus_app/database/download_helper.dart';
 import 'package:conecta_plus_app/database/fotos_helper.dart';
 import 'package:conecta_plus_app/database/log_helper.dart';
+import 'package:conecta_plus_app/database/ocorrencias_helper.dart';
 import 'package:conecta_plus_app/database/pessoas_helper.dart';
 import 'package:conecta_plus_app/database/ponto_helper.dart';
 import 'package:conecta_plus_app/database/usuarios_helper.dart';
+import 'package:conecta_plus_app/model/download.dart';
 import 'package:conecta_plus_app/tratar_erro.dart';
 import 'package:conecta_plus_app/util.dart';
 import 'package:path/path.dart';
@@ -96,6 +99,8 @@ class DatabaseHelper {
       PessoasHelper.criarPessoas(db);
       FotosHelper.criarFotos(db);
       PontoHelper.criarPontos(db);
+      DownloadHelper.criarDownload(db);
+      OcorrenciasHelper.criarOcorrencias(db);
 
       Util.printDebug('_onCreate -->');
     } on Exception catch (e) {
@@ -125,6 +130,11 @@ class DatabaseHelper {
 
       LogHelper.criarLog(db);
       UsuariosHelper.criarUsuarios(db);
+      PessoasHelper.criarPessoas(db);
+      FotosHelper.criarFotos(db);
+      PontoHelper.criarPontos(db);
+      DownloadHelper.criarDownload(db);
+      OcorrenciasHelper.criarOcorrencias(db);
 
       await DatabaseUpgrade().versaoTodos(db, false);
 

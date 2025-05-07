@@ -17,7 +17,8 @@ class FotosHelper extends DatabaseHelper{
           CREATE TABLE IF NOT EXISTS $fotosTable  (
           $fotosColId INTEGER PRIMARY KEY,          
           $fotosColDataHora TEXT NOT NULL,
-          $fotosColIdUsuario INTEGER NOT NULL,          
+          $fotosColIdUsuario INTEGER NOT NULL,
+          $fotosColIdUsuarioConecta INTEGER ,              
           $fotosColArquivo TEXT NOT NULL,          
           $fotosColEnviado INTEGER NOT NULL,
           $fotosColFinalizado INTEGER NOT NULL DEFAULT(0),          
