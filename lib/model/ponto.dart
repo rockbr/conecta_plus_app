@@ -13,6 +13,7 @@ const String pontosColNumero = 'numero';
 const String pontosColBairro = 'bairro';
 const String pontosColCep = 'cep';
 const String pontosColCidade = 'cidade';
+const String pontosColIdPessoa = 'id_pessoa';
 const String pontosColIdUsuario = 'id_usuario';
 const String pontosColIdUsuarioConecta = 'id_usuario_conecta';
 const String pontosColEnviado = 'enviado';
@@ -31,6 +32,7 @@ class Ponto {
   final String? bairro;
   final String? cep;
   final String? cidade;
+  final int idPessoa;
   final int idUsuario;
   final int idUsuarioConecta;
   int enviado;
@@ -53,6 +55,7 @@ class Ponto {
         required this.bairro,
         required this.cep,
         required this.cidade,
+        required this.idPessoa,
         required this.idUsuario,
         required this.idUsuarioConecta,
         required this.enviado,
@@ -69,6 +72,7 @@ class Ponto {
         this.bairro,
         this.cep,
         this.cidade,
+        required this.idPessoa,
         required this.idUsuario,
         required this.idUsuarioConecta,
         required this.enviado,
@@ -85,6 +89,7 @@ class Ponto {
         required this.bairro,
         required this.cep,
         required this.cidade,
+        required this.idPessoa,
         required this.idUsuario,
         required this.idUsuarioConecta,
         required this.enviado,
@@ -102,6 +107,7 @@ class Ponto {
       'bairro': bairro,
       'cep': cep,
       'cidade': cidade,
+      'id_pessoa': idPessoa,
       'id_usuario': idUsuario,
       'id_usuario_conecta': idUsuarioConecta,
       'enviado': enviado,
@@ -114,6 +120,7 @@ class Ponto {
     id: int.tryParse(map['id'].toString())!,
     data: map['data'],
     dataHora: map['data_hora'],
+    idPessoa: int.tryParse(map['id_pessoa'].toString())!,
     idUsuario: int.tryParse(map['id_usuario'].toString())!,
     idUsuarioConecta: int.tryParse(map['id_usuario_conecta'].toString())!,
     enviado: int.tryParse(map['enviado'].toString())!,
@@ -130,6 +137,7 @@ class Ponto {
     bairro: map['bairro'],
     cep: map['cep'],
     cidade: map['cidade'],
+    idPessoa: int.tryParse(map['id_pessoa'].toString())!,
     idUsuario: int.tryParse(map['id_usuario'].toString())!,
     idUsuarioConecta: int.tryParse(map['id_usuario_conecta'].toString())!,
     enviado: int.tryParse(map['enviado'].toString())!,
@@ -148,6 +156,7 @@ class Ponto {
       'bairro': bairro,
       'cep': cep,
       'cidade': cidade,
+      'id_pessoa': idPessoa,
       'id_usuario': idUsuario,
       'id_usuario_conecta': idUsuarioConecta,
       'enviado': enviado,

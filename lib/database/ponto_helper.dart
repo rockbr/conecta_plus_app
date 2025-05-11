@@ -24,6 +24,7 @@ class PontoHelper extends DatabaseHelper {
           $pontosColBairro TEXT,
           $pontosColCep TEXT,
           $pontosColCidade TEXT,
+          $pontosColIdPessoa INTEGER,      
           $pontosColIdUsuario INTEGER,          
           $pontosColIdUsuarioConecta INTEGER,
           $pontosColEnviado INTEGER NOT NULL,

@@ -202,6 +202,7 @@ class _RelogioPontoState extends State<RelogioPonto> {
           bairro: Sessao.subLocality,
           cep: Sessao.postalCode,
           cidade: Sessao.subAdministrativeArea,
+          idPessoa: Sessao.idPessoa,
           idUsuario: Sessao.idUsuario,
           idUsuarioConecta: item.idUsuarioConecta,
           enviado: 0,

@@ -358,6 +358,7 @@ class WebService {
         for (var item in listPonto) {
           Map body = {
             'data_ponto': item.dataHora.toString(),
+            'id_pessoa': item.idPessoa.toString(),
             'id_usuario': item.idUsuario.toString(),
             'id_usuario_conecta': item.idUsuarioConecta.toString(),
             'latitude': item.latitude,
