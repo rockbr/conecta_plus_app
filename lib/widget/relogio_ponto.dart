@@ -54,7 +54,7 @@ class _RelogioPontoState extends State<RelogioPonto> {
                 // Botão para selecionar/deselecionar todos
                 Container(
                   width: double.infinity, // Faz o container ocupar toda a largura
-                  color: Colors.blue, // Cor de fundo azul
+                  color: Colors.amber, // Cor de fundo azul
                   padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16), // Ajusta o padding
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween, // Alinha o texto e o botão com espaço entre eles
@@ -205,6 +205,7 @@ class _RelogioPontoState extends State<RelogioPonto> {
           idPessoa: Sessao.idPessoa,
           idUsuario: Sessao.idUsuario,
           idUsuarioConecta: item.idUsuarioConecta,
+          nomeCliente: Sessao.nomeCliente,
           enviado: 0,
           finalizado: 0,
         );

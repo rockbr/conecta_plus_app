@@ -149,7 +149,7 @@ class _LoginState extends State<Login> {
             flex: 0,
             child: Container(
               margin: const EdgeInsets.only(top: 3.0),
-              color: Colors.blueGrey,
+              color: Colors.amberAccent,
               child: const IntrinsicHeight(
                 child: Column(
                   children: <Widget>[

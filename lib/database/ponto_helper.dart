@@ -27,6 +27,7 @@ class PontoHelper extends DatabaseHelper {
           $pontosColIdPessoa INTEGER,      
           $pontosColIdUsuario INTEGER,          
           $pontosColIdUsuarioConecta INTEGER,
+          $pontosColNomeCliente TEXT,
           $pontosColEnviado INTEGER NOT NULL,
           $pontosColFinalizado INTEGER NOT NULL DEFAULT(0)
           )''');
@@ -78,6 +79,21 @@ class PontoHelper extends DatabaseHelper {
         [1, 0]);
 
     return true;
+  }
+  Future<List<Ponto>> getPontoDia(int idUsuario, String data) async {
+    Util.printDebug('getPontoDia');
+
+    final db = await DatabaseHelper.instance.database;
+
+    final result = await db.query(
+      pontosTable,
+      where: "id_usuario = ? AND data = ?",
+      whereArgs: [idUsuario, data],
+      orderBy: '$pontosColDataHora DESC',
+      limit: 1,
+    );
+
+    return result.map((row) => Ponto.fromMapObject(row)).toList();
   }
 
   Future<List<Ponto>> getPontoTipo(

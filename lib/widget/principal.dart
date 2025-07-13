@@ -26,13 +26,16 @@ class Principal extends StatefulWidget {
 class _PrincipalState extends State<Principal> {
   final String title = Util.appNome;
   String _authStatus = 'Unknown';
+  final TextEditingController _nomeController = TextEditingController();
 
   @override
   void initState() {
-    //VARIAVEIS PARA TESTE
-    //Sessao.fotoCheck = 1;
 
-    //app_tracking_transparency
+    _nomeController.value = TextEditingValue(
+      text: Sessao.nomeCliente,
+      selection: TextSelection.collapsed(offset: Sessao.nomeCliente.length),
+    );
+
     if (Platform.isIOS) {
       appTrackingTransparencyIos();
     }
@@ -88,6 +91,7 @@ class _PrincipalState extends State<Principal> {
                           subtitle: Header(tipo: "subtitle"),
                         ),
                       ),
+                      _nomeCliente(),
                       _cardHeader(1, "Ponto", Icons.access_time),
                       _ponto(),
                       _cardHeader(1, "Foto", Icons.photo_camera),
@@ -101,7 +105,7 @@ class _PrincipalState extends State<Principal> {
               flex: 0,
               child: Container(
                 margin: const EdgeInsets.only(top: 3.0),
-                color: Colors.blueGrey,
+                color: Colors.amberAccent,
                 child: const IntrinsicHeight(
                   child: Column(
                     children: <Widget>[
@@ -129,7 +133,7 @@ class _PrincipalState extends State<Principal> {
           children: <Widget>[
             Expanded(
               child: Card(
-                color: Colors.blue,
+                color: Colors.amber,
                 elevation: 2.0,
                 child: ListTile(
                   dense: true,
@@ -156,6 +160,89 @@ class _PrincipalState extends State<Principal> {
     );
   }
 
+  Widget _nomeCliente() {
+    return Visibility(
+      visible: true,
+      child: Padding(
+        padding: const EdgeInsets.only(top: 0.5, bottom: 0.5),
+        child: Row(
+          children: <Widget>[
+            Expanded(
+              child: Card(
+                color: Colors.amber,
+                elevation: 2.0,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Row(
+                        children: [
+                          Icon(Icons.person, color: Colors.white, size: 24),
+                          SizedBox(width: 8),
+                          Text(
+                            'Nome do Cliente',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+
+                      // Campo de texto com maiúsculas automáticas
+                      TextField(
+                        controller: _nomeController,
+                        style: const TextStyle(fontSize: 12),
+                        textCapitalization: TextCapitalization.characters,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          hintText: 'Digite o nome do cliente',
+                          contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        onChanged: (value) {
+                          // Força tudo em maiúsculo
+                          final upper = value.toUpperCase();
+                          if (value != upper) {
+                            _nomeController.value = _nomeController.value.copyWith(
+                              text: upper,
+                              selection: TextSelection.collapsed(offset: upper.length),
+                            );
+                          }
+
+                          // Salva na sessão
+                          if (upper.trim().isNotEmpty) {
+                            Sessao.nomeCliente = upper.trim();
+                            Util.printDebug("Cliente: ${Sessao.nomeCliente}");
+                          }
+                        },
+                      ),
+
+                      const SizedBox(height: 4),
+
+                      // Ícone de confirmação de ponto
+                      if (Sessao.pontoCheck == 1)
+                        const Align(
+                          alignment: Alignment.centerRight,
+                          child: Icon(Icons.check_circle, color: Colors.red, size: 16),
+                        ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _ponto() {
     return Visibility(
       visible: true,
@@ -169,29 +256,39 @@ class _PrincipalState extends State<Principal> {
                 elevation: 2.0,
                 child: ListTile(
                   dense: true,
-                  leading: Icon(
+                  leading: const Icon(
                     Icons.access_time,
-                    color: Colors.deepOrange
-                    ,
+                    color: Colors.deepOrange,
                     size: 24.0,
                     semanticLabel: 'Ponto',
                   ),
-                  title: const Text('Ponto',
-                      style:
-                      TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
+                  title: const Text(
+                    'Ponto',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+                  ),
                   trailing: (Sessao.pontoCheck == 1
                       ? const Icon(Icons.check_circle, color: Colors.red, size: 16.0)
                       : null),
-                  subtitle: Text("", style: const TextStyle(fontSize: 11)),
+                  subtitle: const Text("", style: TextStyle(fontSize: 11)),
                   onTap: () {
+                    if (Sessao.nomeCliente.trim().isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Por favor, preencha o nome do cliente.'),
+                          duration: Duration(seconds: 2),
+                        ),
+                      );
+                      return;
+                    }
+
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const RelogioPonto()
+                        builder: (context) => const RelogioPonto(),
                       ),
                     );
 
-                    Util.printDebug("Tap Ponto");
+                    Util.printDebug("Tap Ponto - Cliente: ${_nomeController.text}");
                   },
                 ),
               ),
@@ -230,6 +327,15 @@ class _PrincipalState extends State<Principal> {
                       : null),
                   subtitle: Text("", style: const TextStyle(fontSize: 11)),
                   onTap: () {
+                    if (Sessao.nomeCliente.trim().isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Por favor, preencha o nome do cliente.'),
+                          duration: Duration(seconds: 2),
+                        ),
+                      );
+                      return;
+                    }
                       Navigator.push(
                         context,
                         MaterialPageRoute(

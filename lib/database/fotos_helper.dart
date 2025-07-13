@@ -19,10 +19,12 @@ class FotosHelper extends DatabaseHelper{
           $fotosColDataHora TEXT NOT NULL,
           $fotosColIdUsuario INTEGER NOT NULL,
           $fotosColIdUsuarioConecta INTEGER ,              
-          $fotosColArquivo TEXT NOT NULL,          
+          $fotosColArquivo TEXT NOT NULL,
+          $fotosColNomeCliente TEXT,          
           $fotosColEnviado INTEGER NOT NULL,
           $fotosColFinalizado INTEGER NOT NULL DEFAULT(0),          
-          $fotosColFotoDeletada INTEGER
+          $fotosColFotoDeletada INTEGER,
+          $fotosColTipo TEXT
           )''');
       //#endregion
     } on Exception catch (e) {

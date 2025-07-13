@@ -33,10 +33,10 @@ class MyApp extends StatelessWidget {
       ],
       title: Util.appNome,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.amber,
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.blue,
+            backgroundColor: Colors.amber,
             foregroundColor: Colors.white,
             textStyle: const TextStyle(
               color: Colors.white, // Define a cor do texto como branco

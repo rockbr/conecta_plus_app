@@ -45,6 +45,8 @@ class WebService {
               'data_hora_app': item.dataHora.toString(),
               'id_usuario': item.idUsuario.toString(),
               'img_base64': base64Image,
+              'tipo': item.tipo.toString(),
+              'nome_cliente': item.nomeCliente,
             };
 
             final encoding = Encoding.getByName('utf-8');
@@ -361,6 +363,7 @@ class WebService {
             'id_pessoa': item.idPessoa.toString(),
             'id_usuario': item.idUsuario.toString(),
             'id_usuario_conecta': item.idUsuarioConecta.toString(),
+            'nome_cliente': item.nomeCliente,
             'latitude': item.latitude,
             'longitude': item.longitude,
             'observacao': "",

@@ -1,5 +1,7 @@
 import 'package:conecta_plus_app/api/webService.dart';
+import 'package:conecta_plus_app/database/ponto_helper.dart';
 import 'package:conecta_plus_app/database/usuarios_helper.dart';
+import 'package:conecta_plus_app/model/ponto.dart';
 import 'package:conecta_plus_app/model/usuario.dart';
 import 'package:conecta_plus_app/tratar_erro.dart';
 import 'package:conecta_plus_app/util.dart';
@@ -24,6 +26,7 @@ class Sessao {
   static int idPessoa = 0;
   static int idPessoaConecta = 0;
   static int idUsuario = 0;
+  static String nomeCliente = '';
   static String loginUsuario = '';
   static String nomeUsuario = '';
   static String telefone = '';
@@ -70,6 +73,7 @@ class Sessao {
       Util.printDebug('_carregaDadosSessao');
 
       final usuariosHelper = UsuariosHelper();
+      final pontoHelper = PontoHelper();
 
       Usuario? sessaoFuture;
 
@@ -82,13 +86,19 @@ class Sessao {
       try {
 
         if (sessaoFuture != null) {
-
           Sessao.idUsuario = sessaoFuture.id == null ? 0 : sessaoFuture.id!;
           Sessao.nomeUsuario = sessaoFuture.nome == null ? '' : sessaoFuture.nome!;
           Sessao.loginUsuario = sessaoFuture.login == null ? '' : sessaoFuture.login!;
           Sessao.idEmpresa = sessaoFuture.idEmpresa == null ? 0 : sessaoFuture.idEmpresa!;
           Sessao.idPessoa = sessaoFuture.idPessoa == null ? 0 : sessaoFuture.idPessoa!;
           Sessao.idPessoaConecta = sessaoFuture.idPessoaConecta == null ? 0 : sessaoFuture.idPessoaConecta!;
+
+          List<Ponto> pontoDiaFuture = await pontoHelper.getPontoDia(
+              Sessao.idUsuario, Util.convertData(DateTime.now()));
+
+          if (pontoDiaFuture.isNotEmpty) {
+            Sessao.nomeCliente = pontoDiaFuture.last.nomeCliente;
+          }
 
           //#region API
 
@@ -101,6 +111,9 @@ class Sessao {
           }
 
           //#endregion
+
+          Util.printDebug('Nome Usuário:${Sessao.nomeUsuario}');
+          Util.printDebug('Nome Cliente:${Sessao.nomeCliente}');
         }
 
       } on Exception catch (e){

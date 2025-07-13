@@ -16,6 +16,7 @@ const String pontosColCidade = 'cidade';
 const String pontosColIdPessoa = 'id_pessoa';
 const String pontosColIdUsuario = 'id_usuario';
 const String pontosColIdUsuarioConecta = 'id_usuario_conecta';
+const String pontosColNomeCliente = 'nome_cliente';
 const String pontosColEnviado = 'enviado';
 const String pontosColFinalizado = 'finalizado';
 
@@ -35,6 +36,7 @@ class Ponto {
   final int idPessoa;
   final int idUsuario;
   final int idUsuarioConecta;
+  final String nomeCliente;
   int enviado;
   int? finalizado;
 
@@ -58,6 +60,7 @@ class Ponto {
         required this.idPessoa,
         required this.idUsuario,
         required this.idUsuarioConecta,
+        required this.nomeCliente,
         required this.enviado,
         required this.finalizado});
 
@@ -75,6 +78,7 @@ class Ponto {
         required this.idPessoa,
         required this.idUsuario,
         required this.idUsuarioConecta,
+        required this.nomeCliente,
         required this.enviado,
         this.finalizado});
 
@@ -92,6 +96,7 @@ class Ponto {
         required this.idPessoa,
         required this.idUsuario,
         required this.idUsuarioConecta,
+        required this.nomeCliente,
         required this.enviado,
         required this.finalizado});
 
@@ -110,6 +115,7 @@ class Ponto {
       'id_pessoa': idPessoa,
       'id_usuario': idUsuario,
       'id_usuario_conecta': idUsuarioConecta,
+      'nome_cliente': nomeCliente,
       'enviado': enviado,
       'finalizado': finalizado,
     }..removeWhere(
@@ -123,6 +129,7 @@ class Ponto {
     idPessoa: int.tryParse(map['id_pessoa'].toString())!,
     idUsuario: int.tryParse(map['id_usuario'].toString())!,
     idUsuarioConecta: int.tryParse(map['id_usuario_conecta'].toString())!,
+    nomeCliente: map['nome_cliente'].toString(),
     enviado: int.tryParse(map['enviado'].toString())!,
   );
 
@@ -140,6 +147,7 @@ class Ponto {
     idPessoa: int.tryParse(map['id_pessoa'].toString())!,
     idUsuario: int.tryParse(map['id_usuario'].toString())!,
     idUsuarioConecta: int.tryParse(map['id_usuario_conecta'].toString())!,
+    nomeCliente: map['nome_cliente'].toString(),
     enviado: int.tryParse(map['enviado'].toString())!,
     finalizado: Util.intNull(map['finalizado']),
   );
@@ -159,6 +167,7 @@ class Ponto {
       'id_pessoa': idPessoa,
       'id_usuario': idUsuario,
       'id_usuario_conecta': idUsuarioConecta,
+      'nome_cliente': nomeCliente,
       'enviado': enviado,
       'finalizado': finalizado,
     };
